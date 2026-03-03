@@ -15,6 +15,16 @@ use App\Http\Middleware\LogAcessoMiddleware;
 
 Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
 
+Route::get('/sobre', [App\Http\Controllers\Principal::class, 'sobre'])->name('sobre');
+
+Route::get('/administracao', [App\Http\Controllers\Principal::class, 'administração'])->name('adm');
+
+Route::get('/meioAmbiente', [App\Http\Controllers\Principal::class, 'meioAmbiente'])->name('meioambiente');
+
+Route::get('/densenvolvimento', [App\Http\Controllers\Principal::class, 'densenvolvimento'])->name('DS');
+
+Route::get('/contato', [App\Http\Controllers\Principal::class, 'contato'])->name('contato');
+
 
 
 
