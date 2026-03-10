@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LogAcessoMiddleware;
+use App\Http\Controllers\Principal;
+use App\Http\Controllers\Sobre;
+use App\Http\Controllers\Contato;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +16,12 @@ use App\Http\Middleware\LogAcessoMiddleware;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
+Route::get('/', [Principal::class, 'index'])->name('index');
+Route::get('/Sobre', [Sobre::class, 'sobre'])->name("sobre");
+Route::get('/Contato', [Contato::class, 'contato'])->name("contato");
+
+
+
 
 
 
