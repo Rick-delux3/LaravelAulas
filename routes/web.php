@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LogAcessoMiddleware;
+use App\Http\Controllers\Principal;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,20 @@ use App\Http\Middleware\LogAcessoMiddleware;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
+
+Route::get('/', [Principal::class, 'principal'])->name("index");
+
+Route::prefix('publico')->group(function(){
+    Route::get('/contato/{nome}', [Principal::class, 'contato']);
+    Route::get('/contato/{nome}/{sobrenome}', [Principal::class, 'contatoNomeCompleto']);
+    Route::get('/contato/{nome}/{sobrenome}/{mensagem}', [Principal::class, 'contatoMensagem']);
+    Route::get('/contato/{nome}/{sobrenome}/{mensagem}/{telefone}/{email?}', [Principal::class, 'contatoTelefone']);
+});
+
+Route::fallback(function(){
+    echo "A rota acessada não existe!";
+    echo "<a href='". route('index') ."'>Voltar</a>";
+});
 
 
 
