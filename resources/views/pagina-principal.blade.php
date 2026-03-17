@@ -59,7 +59,7 @@
           <p class="card-text">
             Aprenda programação, banco de dados, desenvolvimento web e criação de softwares modernos.
           </p>
-          <a href="#" class="btn btn-primary">Saiba Mais</a>
+          <a href="{{ route("DS") }}" class="btn btn-primary">Saiba Mais</a>
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@
           <p class="card-text">
             Desenvolva habilidades em gestão, empreendedorismo, finanças e organização empresarial.
           </p>
-          <a href="route{{ route("sobre") }}" class="btn btn-primary">Saiba Mais</a>
+          <a href="route{{ route("adm") }}" class="btn btn-primary">Saiba Mais</a>
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@
           <p class="card-text">
             Estude sustentabilidade, preservação ambiental e técnicas para proteção dos recursos naturais.
           </p>
-          <a href="#" class="btn btn-primary">Saiba Mais</a>
+          <a href="{{ route("am") }}" class="btn btn-primary">Saiba Mais</a>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@
           <p class="card-text">
             Integra mecânica, eletrônica e programação para desenvolver sistemas automatizados e robótica.
           </p>
-          <a href="#" class="btn btn-primary">Saiba Mais</a>
+          <a href="{{ route("mec") }}" class="btn btn-primary">Saiba Mais</a>
         </div>
       </div>
     </div>
