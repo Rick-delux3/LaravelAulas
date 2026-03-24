@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LogAcessoMiddleware;
+use App\Http\Controllers\Principal;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,16 @@ use App\Http\Middleware\LogAcessoMiddleware;
 */
 
 Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
+
+Route::get('/somar/{p1}/{p2}', [Principal::class, 'somar']);
+Route::get('/multiplicar/{p1}/{p2}', [Principal::class, 'somar']);
+Route::get('/subtrair/{p1}/{p2}', [Principal::class, 'somar']);
+Route::get('/dividir/{p1}/{p2}', [Principal::class, 'somar']);
+
+Route::get('/produtos', [Principal::class, 'produtos']);
+
+
+
 
 
 
