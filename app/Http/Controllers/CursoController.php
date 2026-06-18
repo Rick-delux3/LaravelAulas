@@ -19,12 +19,28 @@ class CursoController extends Controller
 
     public function add(Request $data) {
         
-        $curso = new CursoModel();
-        $curso::create($data->all());
+        $validador = Validator::make(
+            $data->all(),
+                [
+                    'nome' => 'required|min:3|max:255',
+                ],
+                [
+                    'nome.required' => 'o nome é obrigatório',
+                    'nome.max' => 'O campo nome deve conter no mínimo 3 caracteres.',
+                    'nome.min' => 'O campo nome deve conter no máximo 255 caracteres.',
+                ]
+                );
 
-        $cursos = new CursoModel();
+        if($validador->fails()){
+            return redirect()->route('aluno.index')->withErrors($validador)->withInput();
+        }
+        
+        $aluno = new AlunoModel();
+        $aluno::create($data->all());
 
-        return view('curso.index', ['success' => 'Cadastrado!', 'cursos' => $cursos::all()]);
+        $alunos = new AlunoModel();
+
+        return view('aluno.index', ['success' => 'Cadastrado!', 'alunos' => $alunos::all()]);
     }
 
     public function remove(string $id)

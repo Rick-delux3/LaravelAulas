@@ -18,6 +18,32 @@ class ComponenteController extends Controller
 
     public function add(Request $data) {
         
+        $validador = Validator::make(
+            $data->all(),
+                [
+                    'nome' => 'required|min:3|max:255',
+                    'hora_inicio' => 'required|date',
+                    'hora_fim'    => 'required|date|after:hora_inicio',
+                ],
+                [
+                    'nome.required'        => 'O nome do componente é obrigatório.',
+                    'nome.string'          => 'O nome deve ser um texto válido.',
+                    'nome.min'             => 'O nome deve conter no mínimo 3 caracteres.',
+                    'nome.max'             => 'O nome deve conter no máximo 255 caracteres.',
+                    
+                    'hora_inicio.required' => 'A hora de início é obrigatória.',
+                    'hora_inicio.date'     => 'A hora de início deve ser uma data e hora válida.',
+                    
+                    'hora_fim.required'    => 'A hora de fim é obrigatória.',
+                    'hora_fim.date'        => 'A hora de fim deve ser uma data e hora válida.',
+                    'hora_fim.after'       => 'A hora de término deve ser posterior à hora de início.',
+                ]
+                );
+
+        if($validador->fails()){
+            return redirect()->route('componente.index')->withErrors($validador)->withInput();
+        }
+        
         $comp = new ComponenteModel();
         $comp::create($data->all());
 
