@@ -23,7 +23,7 @@ class AlunoController extends Controller
         $validador = Validator::make(
             $data->all(),
                 [
-                    'nome' => 'required|min:3|max::255',
+                    'nome' => 'required|min:3|max:255',
                 ],
                 [
                     'nome.required' => 'o nome é obrigatório',
