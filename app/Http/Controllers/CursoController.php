@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CursoModel;
+use Illuminate\Support\Facades\Validator;
+
 
 
 
@@ -18,6 +20,29 @@ class CursoController extends Controller
     }
 
     public function add(Request $data) {
+
+        $validador = Validator::make(
+                $data->all(),
+                [
+                    'nome' => 'required|min:3|max:255',
+                    'periodo' => 'required|min:3|max:50',
+                ],
+                [
+                    'nome.required' => 'O nome do curso é obrigatório.',
+                    'nome.min' => 'O campo nome deve conter no mínimo 3 caracteres.',
+                    'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+
+                    'periodo.required' => 'O período é obrigatório.',
+                    'periodo.min' => 'O campo período deve conter no mínimo 3 caracteres.',
+                    'periodo.max' => 'O campo período deve conter no máximo 50 caracteres.',
+                ]
+            );
+
+        if ($validador->fails()) {
+            return redirect()->route('curso.index')
+                ->withErrors($validador)
+                ->withInput();
+        }
         
         $curso = new CursoModel();
         $curso::create($data->all());
@@ -40,7 +65,7 @@ class CursoController extends Controller
     {
         $curso = new CursoModel();
 
-        $curso->find($id);
+        $curso = $curso->find($id);
 
         return view('curso.atualizar', ['curso' => $curso]);
 
