@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ContantoController extends Controller
 {
-    public function principal()
+    public function Contato()
     {
         echo 'contato';
     }
